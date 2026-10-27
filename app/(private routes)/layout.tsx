@@ -5,10 +5,8 @@ import { getMe } from "@/lib/api/serverApi";
 
 export default async function PrivateLayout({
   children,
-  modal,
 }: {
   children: ReactNode;
-  modal: ReactNode;
 }) {
   try {
     await getMe();
@@ -17,10 +15,5 @@ export default async function PrivateLayout({
       redirect("/sign-in");
     throw error;
   }
-  return (
-    <>
-      {children}
-      {modal}
-    </>
-  );
+  return children;
 }

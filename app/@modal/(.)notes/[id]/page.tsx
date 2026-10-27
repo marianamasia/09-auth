@@ -3,7 +3,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { fetchNoteById } from "@/lib/api/serverApi";
+import { isAxiosError } from "axios";
+import { redirect } from "next/navigation";
+import { fetchNoteById, getMe } from "@/lib/api/serverApi";
 import NotePreviewClient from "./NotePreview.client";
 
 interface NotePreviewProps {
@@ -11,6 +13,13 @@ interface NotePreviewProps {
 }
 
 export default async function NotePreview({ params }: NotePreviewProps) {
+  try {
+    await getMe();
+  } catch (error) {
+    if (isAxiosError(error) && [401, 403].includes(error.response?.status ?? 0))
+      redirect("/sign-in");
+    throw error;
+  }
   const { id } = await params;
   const queryClient = new QueryClient();
 

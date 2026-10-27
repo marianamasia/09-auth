@@ -21,7 +21,7 @@ Use `NEXT_PUBLIC_API_URL=http://localhost:3000` locally. This is the URL of this
 - Request-specific server cookie forwarding and cookie refresh in `proxy.ts`.
 - Authentication state in Zustand; tokens remain in cookies. Query cache and drafts are cleared on logout.
 
-The route groups `(auth routes)` and `(private routes)` do not appear in URLs. Modal slots live inside the private group with the routes they intercept.
+The route groups `(auth routes)` and `(private routes)` do not appear in URLs. The modal slot lives at `app/@modal` and is rendered by the root layout. Its intercepted note page checks authentication before loading data.
 
 ## Checks
 
