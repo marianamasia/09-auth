@@ -50,7 +50,7 @@ export async function proxy(request: NextRequest) {
   if (isPrivate && !authenticated)
     response = NextResponse.redirect(new URL("/sign-in", request.url));
   else if (isPublic && authenticated)
-    response = NextResponse.redirect(new URL("/profile", request.url));
+    response = NextResponse.redirect(new URL("/", request.url));
   else response = NextResponse.next({ request: { headers } });
 
   if (authenticated) {

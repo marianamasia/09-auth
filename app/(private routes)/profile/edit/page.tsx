@@ -76,7 +76,7 @@ export default function EditProfile() {
               type="button"
               className={css.cancelButton}
               disabled={mutation.isPending}
-              onClick={() => router.push("/profile")}
+              onClick={() => router.back()}
             >
               Cancel
             </button>
